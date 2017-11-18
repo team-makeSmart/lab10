@@ -18,16 +18,19 @@ def wordLoop():
     word = requestString("Enter a word or type \'stop\' to stop")
     print word.lower()
 
+    
+    
 # Hangman
-
 def hangman():
     from random import randint
     
     # TODO add description of game
+    # TODO Do we need to account for letters guessed that are wrong and guessed again?  
+    # TODO unsure on lab10 instructions if needs to be case sensitive  
     # print description
-    
-    # TODO add more words to the word bank
-    wordBank = ["CAT"]
+  
+      # TODO add more words to the word bank
+    wordBank = ["CAT", "AARDVARK"]
     word = wordBank[randint(0, len(wordBank) - 1)]
     
     guessesLeft = 6
@@ -35,13 +38,12 @@ def hangman():
     guessedWord = ""
     
     while (guessesLeft > 0 and guessedWord != word):
-    
-        
-        # get new letter
-        guess = requestString("Guess a letter: ").upper()
-        # TODO make sure input is a single character
-        # TODO make sure letter has not been guessed already
-        if (not guess in word):
+        guess = requestString("Guess a letter: ").upper() #get guess from user
+        if( len(guess) != 1 or guess.isalpha() != True ):  #checks guess is only one alphabetical character 
+          print "Error!  Only enter one character to guess from word."
+        elif(guess in word):
+          print "You already guessed that silly!"
+        elif (not guess in word):
             guessesLeft -= 1
             # TODO add functions for drawing the hangman
             if (guessesLeft > 0):
@@ -65,7 +67,6 @@ def hangman():
     else:
         print "You lose!"
         
-    
         
         
   
