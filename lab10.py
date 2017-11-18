@@ -1,16 +1,22 @@
-# Lab 10
+# Lab 10 CST205 MODULE 4
 # Team MakeSmart
+# Jake McGhee, Mac Doussias, Pavlos Papadonikolakis
+# 11-19-17
+
+#TODO Secondary objective, add exception handling to all function, if time permits.
 
 # Warm Up
-
 def getName():
-    return requestString("What is your name?")
+  """ Prompts user to enter a string that represents their name. """  
+  return requestString("What is your name?")
     
 def wordLoop():
-    word = ''
-    while (word != "stop"):
-        word = requestString("Enter a word or type stop to stop")
-        word.lower()
+  """ Continuously gets user to enter word, then prints word std output. Breaks loop when user presses 'stop' or 'cancel'."""
+  #TODO time permitting, handle the exception of pressing the cancel button so it doesn't throw an error.
+  word = ''
+  while (word != "stop"):
+    word = requestString("Enter a word or type \'stop\' to stop")
+    print word.lower()
 
 # Hangman
 
