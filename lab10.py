@@ -41,7 +41,7 @@ def hangman():
         guess = requestString("Guess a letter: ").upper() #get guess from user
         if( len(guess) != 1 or guess.isalpha() != True ):  #checks guess is only one alphabetical character 
           print "Error!  Only enter one character to guess from word."
-        elif(guess in word):
+        elif(guess in lettersGuessed):
           print "You already guessed that silly!"
         elif (not guess in word):
             guessesLeft -= 1
