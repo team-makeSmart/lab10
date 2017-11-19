@@ -24,8 +24,7 @@ def wordLoop():
 def hangman():
     from random import randint
     
-    # TODO add description of game
-    # TODO Do we need to account for letters guessed that are wrong and guessed again?  
+    # TODO add description of game 
     # TODO unsure on lab10 instructions if needs to be case sensitive  
     # print description
   
