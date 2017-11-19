@@ -24,7 +24,7 @@ def wordLoop():
 # Hangman
 def hangman():
     from random import randint
-    
+
     print'\t\t\t  DESCRIPTION\n'\
          '-----------------------------------------------------------------------------\n'\
          '- In this game the computer selects randomly a word from a list of words and the player\n- tries to guess it' \
@@ -33,7 +33,8 @@ def hangman():
          ' If the suggested letter does not occur the player looses 1 of the 6\n- guesses.' \
          ' If the player quesses all the letters s/he wins else s/he looses the game.\t\n'\
          ' ----------------------------------------------------------------------------' 
-
+    wordBank = ["CAT", "AARDVARK"]
+    word = wordBank[randint(0, len(wordBank) - 1)]
     
     wordBank = ["CAT", "AARDVARK","JAZZ"]
     word = wordBank[randint(0, len(wordBank) - 1)]
