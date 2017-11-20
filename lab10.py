@@ -33,8 +33,6 @@ def hangman():
          ' If the suggested letter does not occur the player looses 1 of the 6\n- guesses.' \
          ' If the player quesses all the letters s/he wins else s/he looses the game.\t\n'\
          ' ----------------------------------------------------------------------------' 
-    wordBank = ["CAT", "AARDVARK"]
-    word = wordBank[randint(0, len(wordBank) - 1)]
     
     wordBank = ["CAT", "AARDVARK","JAZZ"]
     word = wordBank[randint(0, len(wordBank) - 1)]
