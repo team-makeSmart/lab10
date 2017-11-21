@@ -34,12 +34,14 @@ def hangman():
          ' If the player quesses all the letters s/he wins else s/he looses the game.\t\n'\
          ' ----------------------------------------------------------------------------' 
     
-    wordBank = ["CAT", "AARDVARK","JAZZ"]
+    wordBank = ["CAT IN THE HAT", "AARDVARKS BARK","JAZZ", "ROCKET"]
     word = wordBank[randint(0, len(wordBank) - 1)]
     guessesLeft = 0
     lettersGuessed = []
     wrongGuessed = []
     guessedWord = ""
+    if " " in word:
+      lettersGuessed.append(" ") # append blank space to account for phrases that have blank spaces
     
     while (guessesLeft != 6 and guessedWord != word):
     
