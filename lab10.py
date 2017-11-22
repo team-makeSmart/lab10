@@ -32,24 +32,23 @@ def hangman():
          ' If the player quesses all the letters s/he wins else s/he looses the game.\t\n' \
          ' ----------------------------------------------------------------------------'
 
-    words = 'THE GOOD THE BAD AND THE UNGLY'      
+    words = 'THE GOOD THE BAD AND THE UGLY'      
     guessesLeft = 0
     lettersGuessed = []
     wrongGuessed = []
     guessedwords = ""
     encryptedwords = [] 
+    
     for i in xrange(len(words)):
       if words[i].isalpha():
         encryptedwords.append(' _ ')
       elif words[i] == ' ':
-        encryptedwords.append('   ')
-
-    for i in xrange(len(encryptedwords)):
-        print encryptedwords[i],     
+        encryptedwords.append('    ')
+    
 
     wholePhrase = ''
 
-    while (guessesLeft != 6 and wholePhrase != getTrimmedwords(words)):
+    while guessesLeft != 6 and wholePhrase != getTrimmedwords(words):
 
         guess = requestString("Guess a letter: ").upper()  # get guess from user
         guessesLeft = checkError(guess, lettersGuessed, words, wrongGuessed, guessesLeft)
@@ -79,13 +78,13 @@ def checkError(guess, lettersGuessed, words, wrongGuessed, guessesLeft):
     """ wrongGuessed:(list) the list of wrong guessed letters """
     """ guessesLeft:(int) the guesses left """
 
-    if (len(guess) != 1):
+    if len(guess) != 1:
         print "Error!  Only enter one character to guess from words."
     elif not guess.isalpha():
         print 'Letters only please!'
-    elif (guess in lettersGuessed):
+    elif guess in lettersGuessed:
         print "You already guessed " + str(guess)
-    elif (not guess in words and guess.isalpha()):
+    elif not guess in words and guess.isalpha():
         guessesLeft += 1
         wrongGuessed.append(guess)
         print '\nIncorrect!'
