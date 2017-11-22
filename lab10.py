@@ -29,6 +29,7 @@ def hangman():
          ' by suggesting letters.If the guessing player suggests a letter which occurs\n- in the words, the letter appears' \
          ' in its correct position.The program allows the user to make\n- a total of 6 guesses. ' \
          ' If the suggested letter does not occur the player looses 1 of the 6\n- guesses.' \
+
          ' If the player quesses all the letters s/he wins else s/he looses the game.\t\n' \
          ' ----------------------------------------------------------------------------'
 
@@ -38,14 +39,13 @@ def hangman():
     wrongGuessed = []
     guessedwords = ""
     encryptedwords = [] 
-    
+     
     for i in xrange(len(words)):
       if words[i].isalpha():
         encryptedwords.append(' _ ')
       elif words[i] == ' ':
         encryptedwords.append('    ')
     
-
     wholePhrase = ''
 
     while guessesLeft != 6 and wholePhrase != getTrimmedwords(words):
