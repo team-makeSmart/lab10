@@ -1,4 +1,3 @@
-
 # Lab 10 CST205 MODULE 4
 # Team MakeSmart
 # Jake McGhee, Mac Doussias, Pavlos Papadonikolakis
@@ -8,103 +7,116 @@
 
 # Warm Up
 def getName():
-  """ Prompts user to enter a string that represents their name. """  
-  return requestString("What is your name?")
-    
-def wordLoop():
-  """ Continuously gets user to enter word, then prints word std output. Breaks loop when user presses 'stop' or 'cancel'."""
+    """ Prompts user to enter a string that represents their name. """
+    return requestString("What is your name?")
 
-  word = ''
-  while (word != "stop"):
-    word = requestString("Enter a word or type \'stop\' to stop")
-    print word.lower()
 
-    
+def wordsLoop():
+    """ Continuously gets user to enter words, then prints words std output. Breaks loop when user presses 'stop' or 'cancel'."""
+
+    words = ''
+    while (words != "stop"):
+        words = requestString("Enter a words or type \'stop\' to stop")
+        print words.lower()
+
 
 # Hangman
 def hangman():
-    from random import randint
 
-    print'\t\t\t  DESCRIPTION\n'\
-         '-----------------------------------------------------------------------------\n'\
-         '- In this game the computer selects randomly a word from a list of words and the player\n- tries to guess it' \
-         ' by suggesting letters.If the guessing player suggests a letter which occurs\n- in the word, the letter appears' \
+    print'\t\t\t  DESCRIPTION\n' \
+         '-----------------------------------------------------------------------------\n' \
+         '- In this game the computer selects randomly a words from a list of wordss and the player\n- tries to guess it' \
+         ' by suggesting letters.If the guessing player suggests a letter which occurs\n- in the words, the letter appears' \
          ' in its correct position.The program allows the user to make\n- a total of 6 guesses. ' \
          ' If the suggested letter does not occur the player looses 1 of the 6\n- guesses.' \
-         ' If the player quesses all the letters s/he wins else s/he looses the game.\t\n'\
-         ' ----------------------------------------------------------------------------' 
-    
-    wordBank = ["CAT IN THE HAT", "AARDVARKS BARK","JAZZ", "ROCKET"]
-    word = wordBank[randint(0, len(wordBank) - 1)]
+
+         ' If the player quesses all the letters s/he wins else s/he looses the game.\t\n' \
+         ' ----------------------------------------------------------------------------'
+
+    words = 'THE GOOD THE BAD AND THE UGLY'      
     guessesLeft = 0
     lettersGuessed = []
     wrongGuessed = []
-    guessedWord = ""
-    if " " in word:
-      lettersGuessed.append(" ") # append blank space to account for phrases that have blank spaces
+    guessedwords = ""
+    encryptedwords = [] 
+     
+    for i in xrange(len(words)):
+      if words[i].isalpha():
+        encryptedwords.append(' _ ')
+      elif words[i] == ' ':
+        encryptedwords.append('    ')
     
-    while (guessesLeft != 6 and guessedWord != word):
-    
-        guess = requestString("Guess a letter: ").upper() #get guess from user   
-        guessesLeft = checkError(guess,lettersGuessed,word,wrongGuessed,guessesLeft)      
+    wholePhrase = ''
+
+    while guessesLeft != 6 and wholePhrase != getTrimmedwords(words):
+
+        guess = requestString("Guess a letter: ").upper()  # get guess from user
+        guessesLeft = checkError(guess, lettersGuessed, words, wrongGuessed, guessesLeft)
         lettersGuessed.append(guess)
-        guessedWord = printWordSofar(word,guess,lettersGuessed)    
-        
+        wholePhrase = wordsSofar(words, guess, encryptedwords)
+
         if len(wrongGuessed) > 0:
-          print'Incorrect guesses:'
-          for letter in wrongGuessed:
-            print letter, # comma to print in one line     
-                
+            print'\nIncorrect guesses:'
+            for letter in wrongGuessed:
+                print letter,  # comma to print in one line
+
         print ("\nYou have used %s of six guesses " % guessesLeft)
-       
-    if (guessedWord == word):
-      print "You win!"
-    else:
-      print "You lose!"
-        
-        
-        
-def checkError(guess, lettersGuessed, word, wrongGuessed, guessesLeft):
-  """ checks the user's input, if correct guess, it prints correct """
-  """ otherwise it prints incorrect """
-  
-  """ word:(string) the word to guess"""
-  """ guess:(string) the letter guessed """
-  """ lettersGuessed:(list) the list of guessed letters """
-  """ wrongGuessed:(list) the list of wrong guessed letters """
-  """ guessesLeft:(int) the guesses left """
-  
-  if( len(guess) != 1):  
-    print "Error!  Only enter one character to guess from word."
-  elif not guess.isalpha() :
-    print 'Letters only please!'
-  elif(guess in lettersGuessed):
-    print "You already guessed "+str(guess)  
-  elif (not guess in word and guess.isalpha()):
-    guessesLeft += 1
-    wrongGuessed.append(guess)
-    print 'Incorrect!'
-  else:
-    print 'Correct!'
-  return  guessesLeft     
-  
-                                    
-def printWordSofar(word,guess,lettersGuessed):
-  """ prints what is guessed so far """
- 
-  """ word:(string) the word to guess"""
-  """ guess:(string) the letter guessed """
-  """ lettersGuessed:(list) the list of guessed letters """
 
-  encryptedWord = []
-        
-  for letter in word:
-    if letter in lettersGuessed:
-      encryptedWord.append(letter)
+    if wholePhrase == getTrimmedwords(words):
+        print "You win!"
     else:
-      encryptedWord.append(" _ ")   
-    encryptedWordString = "".join(encryptedWord)
+        print "You lose!"
 
-  print 'Word so far:'
-  print encryptedWordString
-  return encryptedWordString
+
+def checkError(guess, lettersGuessed, words, wrongGuessed, guessesLeft):
+    """ checks the user's input, if correct guess, it prints correct """
+    """ otherwise it prints incorrect """
+
+    """ words:(string) the words to guess"""
+    """ guess:(string) the letter guessed """
+    """ lettersGuessed:(list) the list of guessed letters """
+    """ wrongGuessed:(list) the list of wrong guessed letters """
+    """ guessesLeft:(int) the guesses left """
+
+    if len(guess) != 1:
+        print "Error!  Only enter one character to guess from words."
+    elif not guess.isalpha():
+        print 'Letters only please!'
+    elif guess in lettersGuessed:
+        print "You already guessed " + str(guess)
+    elif not guess in words and guess.isalpha():
+        guessesLeft += 1
+        wrongGuessed.append(guess)
+        print '\nIncorrect!'
+    else:
+        print '\nCorrect!'
+    return guessesLeft
+
+
+def wordsSofar(words, guess, encryptedwords):
+    """ prints what is guessed so far """
+
+    """ words:(string) the words to guess"""
+    """ guess:(string) the letter guessed """
+    """ lettersGuessed:(list) the list of guessed let
+    ters """
+
+    str = ''
+    for i in xrange(len(words)):
+        if words[i] == guess:
+            encryptedwords[i] = guess
+
+    print 'words so far:'
+    for i in xrange(len(encryptedwords)):
+        print encryptedwords[i],
+        str += encryptedwords[i]
+
+    return getTrimmedwords(str)
+
+
+def getTrimmedwords(words):
+    trimmed = ''
+    for i in xrange(len(words)):
+        if words[i] != ' ':
+            trimmed += words[i]
+    return str(trimmed)
